@@ -1,6 +1,6 @@
 from django.db import models
 from django import forms
-from codefundo.models import user_details,User
+from codefundo.models import user_details,User,gov_fund
 
 class input(forms.ModelForm):
     class Meta:
@@ -15,3 +15,7 @@ class Authentic(forms.ModelForm):
         fields =("username","password","first_name","last_name","email",)
 
 
+class fund_gov(forms.ModelForm):
+    class Meta:
+        model = gov_fund
+        fields= '__all__'
