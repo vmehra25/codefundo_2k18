@@ -17,32 +17,31 @@ def main_page(request):
     form=input()
     #mypaste=user_details.objects.all()
     #mypaste = sorted(mypaste,key=lambda x:x.url,reverse=True)
-
+    count_user=track_users()
     if request.method=="POST":
           form=input(request.POST)
-         # mydate=request.POST.get("date",)
-          cur_obj = form.save(commit=False)
-          obj_track=track_users.objects.all()
-          print(obj_track)
-          for it in obj_track:
-            print(it.pincode)
-            if it.pincode == cur_obj.pincode:
-              it.user_count=it.user_count + 1
-              break
-            else:
-               it.pincode = cur_obj.pincode
-               it.user_count=1
-               it.save()
-      
-          for i in obj_track:
-            print(i.pincode)
-            print(i.user_count)
-          print("manan")  
+         # myd
+          current=form.save(commit=False)
+          try:
+             content_object=track_users.objects.get(pincode = current.pincode)
+          except:
+             content_object = None
+          if content_object == None:
+             content_object = track_users()
+             content_object.pincode=current.pincode
+             content_object.city=current.city
+             
+             content_object.user_count=1
+             content_object.save()
+          else :
+              content_object.user_count=content_object.user_count+1
+              content_object.save()
+         
+          
+         
+            
           if form.is_valid():
-            cur_obj = form.save(commit=False)
-            obj_track=track_users()
-            obj_track.pincode = cur_obj.pincode
-            obj_track.user_count
+            
             form.save()
             return render(request,"codefundo/ss.html") 
           else:
