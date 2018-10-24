@@ -18,7 +18,13 @@
       background-color: #f1f1f1;
       height: 100%;
     }
-    
+    .circle
+  {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px; 
+    background-color: #555
+  }
     /* Set black background color, white text and some padding */
     footer {
       background-color: #555;
@@ -65,6 +71,7 @@
        Postal_code: <br> {{form.pincode}}
 
 <br>
+city: <br> {{form.city}}
             Registered Successfully!
 <br>
             <input class="btn btn-primary" type="submit" value="Submit Another Response">   
@@ -94,66 +101,23 @@
       <br>
       <p>This website is concerned with the number of people around a particular place... So that we can reach them and help them from Natural Calamity </p>
       <br><br>
-
-      
-
-      
-      <h4><small>RECENT POSTS</small></h4>
-      <hr>
-      <h2>Officially Blogging</h2>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by Microsoft, Sep 24, 2015.</h5>
-      
-      <p>Microsft is not About greed</p>
-      <p>Its about <strong>Innovation</strong> and <strong>Fairness</strong></p>
-      <hr>
-
-      <h4>Leave a Comment:</h4>
-      <form role="form">
-        <div class="form-group">
-          <textarea class="form-control" rows="3" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
-      <br><br>
-      
-      <p><span class="badge">2</span> Comments:</p><br>
-      
-      <div class="row">
-        <div class="col-sm-2 text-center">
-          <img src='{% static "codefundo/manan.jpg" %}' class="img-circle" height="65" width="65" alt="Avatar">
-        </div>
-        <div class="col-sm-10">
-          <h4>Manan Poddar <small>Sep 29, 2015, 9:12 PM</small></h4>
-          <p>Keep up the GREAT work! I am cheering for you guys!! </p>
-          <br>
-        </div>
-        <div class="col-sm-2 text-center">
-          <img src='{% static "codefundo/shashank.jpg" %}' class="img-circle" height="65" width="65" alt="Avatar">
-        </div>
-        <div class="col-sm-10">
-          <h4>Shashank Jaiswal <small>Sep 25, 2015, 8:25 PM</small></h4>
-          <p>Certainly,we are all happy with your work. Keep it up !!</p>
-          <br>
-          <p><span class="badge">1</span> Comment:</p><br>
-          <div class="row">
-            <div class="col-sm-2 text-center">
-              <img src='{% static "codefundo/vedant.jpg" %}' class="img-circle" height="65" width="65" alt="Avatar">
-            </div>
-            <div class="col-xs-10">
-              <h4>Vedant Mehra <small>Sep 25, 2015, 8:28 PM</small></h4>
-              <p> WOW! </p>
-              <br>
-            </div>
-          </div>
+<div class="row">
+      {% for j in objects %}
+      <div class="col-sm-4">
+        <div class="circle">
+        pincode   <div>{{j.pincode}}</div>
+          user_count <div>{{j.user_count}}</div>
+      fund     <div>{{j.fund}}</div>
+           <br>
+           <br>
         </div>
       </div>
-    </div>
-  </div>
+
+{% endfor %}
 </div>
 
-<footer class="container-fluid">
-  <p>Footer Text</p>
-</footer>
+      
+
 
 </body>
 </html>
